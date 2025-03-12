@@ -1,9 +1,23 @@
+// Proloader
+const proloader = document.querySelector("[data-proloader]");
+
+window.addEventListener("load" , () => {
+    proloader.classList.add("remove")
+})
+// header
+const header = document.querySelector("[data-header]")
+
+window.addEventListener("scroll" , function () {
+    header.classList[window.scrollY > 100 ? "add" : "remove"]("active")
+})
+
+
+// navbar
+
 const menuBtn = document.querySelector('.menu-btn');
 const closeBtn = document.querySelector(".close-btn");
 const navbar = document.querySelector(".navbar");
-// const cardsContainer = document.querySelector('.sr');
-// const scrollLeftBtn = document.querySelector('.scroll-left');
-// const scrollRightBtn = document.querySelector('.scroll-right');
+
 
 document.addEventListener('DOMContentLoaded', function() {
     const cardsContainer = document.querySelector('.sr');
@@ -35,6 +49,7 @@ document.addEventListener('DOMContentLoaded', function() {
         cardsContainer.scrollLeft = 0;
     });
 });
+
 var coll = document.getElementsByClassName("collapsible");
 var i;
 
