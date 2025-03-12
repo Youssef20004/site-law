@@ -93,20 +93,3 @@ console.log(x)
     const y = 100;
     console.log(y);
 }
-
-
-
-// .text-main {
-    // position: absolute;
-    // top: 0;
-    // left: 0;
-    // width: 100%;
-    // height: 100%; 
-    // background: linear-gradient(180deg, rgba(15, 50, 97, 0.5), rgb(19, 27, 37, 1));
-    // pointer-events: none; 
-    // display: flex;
-    // flex-wrap: wrap;
-    // justify-content: center; 
-    // align-items: center;
-// }
-
