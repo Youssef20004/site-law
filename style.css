@@ -17,12 +17,12 @@
 }
 
 
-a,
-span,
+/* a, */
+/* span, */
 img,
 button{display: block;}
 
-a{text-decoration: none;}
+a{text-decoration: none; cursor: pointer;}
 
 button{
     background: none;
@@ -35,9 +35,9 @@ img{width: 100%;}
 
 li{list-style: none;}
 
-section{
+/* section{
     padding-block: 60px;
-}
+} */
 
 
 
@@ -46,15 +46,81 @@ body{
     overflow-x: hidden;
 }
 
+/* ________________________________ */
+   /* #PLOADER */
+/* ________________________________ */
 
-
-.header{
+.preloader{
     position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
-    background-color: rgb(19, 27, 37, 1);
-    box-shadow: var(--shadow-1);
+    height: 100%;
+    background: var(--backgroubd-body);
+    display: grid;
+    place-content: center;
+    z-index: 100;
+    transition: 250ms ease;
+}
+.preloader.remove{
+    visibility: hidden;
+    opacity: 0;
+}
+
+.preloader .img{
+    animation: bounce 800ms ease-in-out infinite alternate;
+}
+
+@keyframes bounce{
+    0% {transform: translateY(-10px);}    
+    100% {transform: translateY(0px);}    
+}
+
+.preloader-inner{
+    position: relative;
+}
+
+.preloader-inner::after{
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 10px;
+    background-color: black;
+    filter: blur(4px);
+    z-index: -1;
+    animation: dropShadow 800ms ease-in-out infinite alternate;
+}
+
+@keyframes dropShadow {
+    0% {width: 40%;}
+    100% {width: 80%;}
+}
+
+/* header */
+.header{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
     z-index: 20;
 }
+
+.header.active{
+    position: fixed;
+    background-color: rgb(19, 27, 37, 1); 
+    box-shadow: var(--shadow-1);
+    animation: slideIn 500ms ease forwards;
+}
+
+@keyframes slideIn {
+    0% {transform: translateY(-100%);}
+    100% {transform: translateY(0);}
+}
+
+
 
 .header .container{
     display: flex;
@@ -109,6 +175,7 @@ body{
     height: 85%;
 }
 
+
 .navbar-list .navbar-link{
     font-size: 1.5rem;
 }
@@ -119,6 +186,17 @@ body{
 .navbar-list .navbar-link:hover{
     transition: 500ms ease;
     color: var(--color-text);
+}
+
+.navbar li{
+    display: flex;
+    direction: rtl;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+.navbar li i{
+    font-size: 1.5rem;
 }
 
 
@@ -180,7 +258,6 @@ body{
     background: var(--background);
     height: 100%;
     width: 100%;
-    pointer-events: none; 
     z-index: 4;
     isolation: isolate;
 }
@@ -219,6 +296,7 @@ body{
 
 .Services .container{
     text-align: center;
+    padding-block: 90px;
 }
 
 .title-services{
@@ -256,6 +334,9 @@ body{
 
 
 /* Testimonials */
+.Testimonials .container{
+    padding-block: 40px;
+}
 
 .image-T-Testimonials {
     position: relative;
@@ -296,6 +377,7 @@ body{
 
 .market .container{
     text-align: center;
+    padding-block: 60px;
 }
 
 .market .container .cards .card{
@@ -318,7 +400,7 @@ body{
 
 /* Articles */
 .Articles .container{
-
+    padding-block: 60px;
 }
 .head {
     display: flex;
@@ -431,6 +513,9 @@ body{
 }
 
 /* questions */
+.questions .container{
+    padding-block: 90px;
+}
 
 .questions h2{
     color: var(--color-text);
@@ -489,15 +574,23 @@ body{
     color: var(--color-text);
 }
 
-.footer span,
+
 .footer .social-icons{
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.footer .social-icons i{
+.footer .social-icons a i{
     font-size: 1.5rem;
-    cursor: pointer;
+    color: #a1a1a1;
+    padding-inline: 20px;
+    padding-block: 40px;
+}
+.footer .navbar-list-1{
+    text-align: center;
+}
+.footer .social-icons a i:hover{
+    color: #fff;
 }
 
 .footer strong{
@@ -520,43 +613,7 @@ body{
 }
 
 @media screen and (min-width: 768px){
-
-    /* header */
-    .header{
-        height: 70px;
-        padding-block: 15px;
-        padding-inline: 10px;
-    }
-    .header .container,
-    .navbar-list,
-    .navbar-link,
-    .navbar{
-        all: unset;
-    }
-    .navbar .logo,
-    .btn-toggle{display: none;}
-
-    .navbar,
-    .header .container,
-    .navbar-list{
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        width: 100%;
-    }
-    .navbar-list{
-        direction: rtl;
-        padding-inline: 30px;
-    }
-
-    .navbar .navbar-link{
-        font-size: 1rem;
-        white-space: nowrap;
-    }
-
-    .navbar .btn{
-        padding: 5px;
-    }
+    
     /*  */
     .persion-img img{
         padding-top: 94px;
@@ -650,9 +707,50 @@ body{
 
 @media screen and (min-width: 1024px){
     /* header */
-    .header{
-        padding-inline: 60px;
+    .header .navbar .btn{
+        font-size: 0.9rem;
     }
+    /* header */
+    .header{
+        height: 100px;
+        padding-block: 15px;
+        padding-inline: 10px;
+    }
+    .header .container,
+    .navbar-list,
+    .navbar-link,
+    .navbar{
+        all: unset;
+    }
+    .navbar .logo,
+    .btn-toggle{display: none;}
+
+    .navbar,
+    .header .container,
+    .navbar-list{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    .logo img{
+        width: 150px;
+    }
+    .navbar-list{
+        direction: rtl;
+        padding-inline: 30px;
+    }
+
+    .navbar .navbar-link{
+        font-size: 1rem;
+        white-space: nowrap;
+    }
+
+    .navbar .btn{
+        padding: 5px;
+    }
+    
     /* hero */
     .hero .container .persion-img{
         display: flex;
@@ -675,19 +773,20 @@ body{
         top: 10%;
     }
     .hero .container .persion-img .social-icons a{
+        position: relative;
         display: grid;
         place-items: center;
-        background: white;
-        border-radius: 50%;
         margin: 10px;
         width: 40px;
-        height: 40px;
-        
+        height: 40px; 
+        z-index: 1000;
     }
-    .hero .container .persion-img .social-icons i{
-        color: black;
+    .hero .container .persion-img .social-icons a i{
+        color: #a1a1a1;
     }
-
+    .hero .container .persion-img .social-icons a i:hover{
+        color: #fff;
+    }
     /*Services */
 
 
@@ -732,15 +831,16 @@ body{
     }
 }
 @media screen and (min-width:1290px){
-    .navbar-list{
+    /* .navbar-list{
         padding-inline: 200px;
-    }
+    } */
     .market .container .cards{
         margin-inline: 135px;
     }
 }
 
 @media screen and (min-width: 1440px){
+    
     .header {
         height: 100px;
     }
@@ -748,12 +848,16 @@ body{
         font-size: 1.8rem;
     }
 
+    .logo img{
+        width: 250px;
+    }
+
     .navbar .navbar-link{
         font-size: 1.2rem;
         font-weight: 600;
     }
 
-    .navbar .btn{
+    .header .navbar .btn{
         height: 50px;
         max-width: 200px;
     }
@@ -836,6 +940,14 @@ body{
 }
 
 @media screen and (min-width: 1600px){
+    /* header */
+    .header{
+        height: 130px;
+    }
+    .logo img{
+        width: 300px;
+        height: 100px;
+    }
      /* Services */
 
     .Services .container .image-Services{
@@ -916,7 +1028,7 @@ body{
 @media screen and (min-width: 1900px){
     /* header */
     .navbar-list{
-        padding-inline: 300px;
+        
     }
     .navbar .navbar-link{
         font-size: 1.5rem;
@@ -995,7 +1107,7 @@ body{
 @media screen and (min-width: 2300px){
     /* header */
     .navbar-list{
-        padding-inline: 380px;
+        
     }
 
      /* Services */
@@ -1032,16 +1144,20 @@ body{
 @media screen and (min-width: 2560px){
      /* header */
      .header{
-        height: 130px;
+        height: 200px;
         padding-block: 30px;
      }
      .navbar-list{
-        padding-inline: 410px;
+       
+    }
+
+    .logo img{
+        width: 450px;
+        height: 150px;
     }
     .navbar .navbar-link{
         font-size: 2rem;
     }
-
     .navbar .btn{
         font-size: 2.2rem;
         max-width: 340px;
@@ -1061,8 +1177,6 @@ body{
     .market .container .cards{
         margin-inline: 770px;
     }
-
-
     .main-image{
         object-fit: cover;
         height: 450px;
